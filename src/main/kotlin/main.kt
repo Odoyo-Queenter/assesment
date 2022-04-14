@@ -1,7 +1,9 @@
 fun main(){
     var customer= currentAccount("Queenter","M-pesa",300.50)
-    customer.balance
-    println(customer.balance)
+
+    customer.deposit(50.50)
+    println(customer.withdraw(10.0))
+
 
 
     details("0707747965",3000,"mpesa")
@@ -15,7 +17,9 @@ fun main(){
     var shopping = listOf<product>(fruits,detol,shoe)
     println(shopping)
 
-    school()
+
+    var outcome= school(arrayOf("Alberts","Rapogi","Ngiya","Lions"))
+    println(outcome)
 
 }
 //Assessment 2
@@ -45,23 +49,24 @@ fun main(){
 //4.Write a function that given a string returns a string composed of only
 //the characters in even indices. For example given “banana” it will return
 
-class  currentAccount(var accounNumber:String, var accountName:String, var balance:Double)
-
-fun deposit(amount:Double){
-    var deposition = 0.00
-    deposition++
-    println(deposition)
+class  currentAccount(var accounNumber:String, var accountName:String, var balance:Double){
+    fun deposit(amount:Double){
+        var deposition= amount + balance
+        println(deposition)
 
 
 
+    }
+    fun withdraw(amount:Double){
+        balance=-amount
+        println(balance)
+
+
+
+    }
 }
-fun withdraw(amount:Double){
-    var withdrawal = 0.00
-    withdrawal--
-    println(withdrawal)
 
 
-}
 fun details(x:String,y:Int,z:String){
     var documentation = "AccountNumbr $x with balance$y operated by $z "
     println(documentation)
@@ -79,12 +84,11 @@ data class product(var name:String, var weight:Int, var price:Int, var category:
 
     }
 
-
-
-
-
-fun school(){
-    var cohort="codehive"
-    println(cohort[0].toString()+cohort[2]+cohort[4]+cohort[6])
-
+fun school(names:Array<String>):List<String> {
+    var schoolString = mutableListOf<String>()
+    names.forEachIndexed { index, d ->
+        if (d.length % 2 == 0)
+            schoolString.add(d)
+    }
+    return schoolString
 }
